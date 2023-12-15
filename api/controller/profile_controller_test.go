@@ -11,9 +11,9 @@ import (
 	"github.com/ZooLearn/zoo/domain"
 	"github.com/ZooLearn/zoo/domain/mocks"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func setUserID(userID string) gin.HandlerFunc {
@@ -31,12 +31,11 @@ func TestFetch(t *testing.T) {
 			Email: "test@gmail.com",
 		}
 
-		userObjectID := primitive.NewObjectID()
-		userID := userObjectID.Hex()
+		userID := uuid.New()
 
 		mockProfileUsecase := new(mocks.ProfileUsecase)
 
-		mockProfileUsecase.On("GetProfileByID", mock.Anything, userID).Return(mockProfile, nil)
+		mockProfileUsecase.On("GetProfileByID", mock.Anything, userID.String()).Return(mockProfile, nil)
 
 		gin := gin.Default()
 
@@ -46,7 +45,7 @@ func TestFetch(t *testing.T) {
 			ProfileUsecase: mockProfileUsecase,
 		}
 
-		gin.Use(setUserID(userID))
+		gin.Use(setUserID(userID.String()))
 		gin.GET("/profile", pc.Fetch)
 
 		body, err := json.Marshal(mockProfile)
@@ -65,14 +64,13 @@ func TestFetch(t *testing.T) {
 	})
 
 	t.Run("error", func(t *testing.T) {
-		userObjectID := primitive.NewObjectID()
-		userID := userObjectID.Hex()
+		userID := uuid.New()
 
 		mockProfileUsecase := new(mocks.ProfileUsecase)
 
 		customErr := errors.New("Unexpected")
 
-		mockProfileUsecase.On("GetProfileByID", mock.Anything, userID).Return(nil, customErr)
+		mockProfileUsecase.On("GetProfileByID", mock.Anything, userID.String()).Return(nil, customErr)
 
 		gin := gin.Default()
 
@@ -82,7 +80,7 @@ func TestFetch(t *testing.T) {
 			ProfileUsecase: mockProfileUsecase,
 		}
 
-		gin.Use(setUserID(userID))
+		gin.Use(setUserID(userID.String()))
 		gin.GET("/profile", pc.Fetch)
 
 		body, err := json.Marshal(domain.ErrorResponse{Message: customErr.Error()})
