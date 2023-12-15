@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/ZooLearn/zoo/domain"
-	"github.com/ZooLearn/zoo/internal/tokenutil"
+	"github.com/ZooLearn/zoo/internal/jwt"
 )
 
 type refreshTokenUsecase struct {
@@ -27,13 +27,13 @@ func (rtu *refreshTokenUsecase) GetUserByID(c context.Context, email string) (do
 }
 
 func (rtu *refreshTokenUsecase) CreateAccessToken(user *domain.User, secret string, expiry int) (accessToken string, err error) {
-	return tokenutil.CreateAccessToken(user, secret, expiry)
+	return jwt.CreateAccessToken(user, secret, expiry)
 }
 
 func (rtu *refreshTokenUsecase) CreateRefreshToken(user *domain.User, secret string, expiry int) (refreshToken string, err error) {
-	return tokenutil.CreateRefreshToken(user, secret, expiry)
+	return jwt.CreateRefreshToken(user, secret, expiry)
 }
 
 func (rtu *refreshTokenUsecase) ExtractIDFromToken(requestToken string, secret string) (string, error) {
-	return tokenutil.ExtractIDFromToken(requestToken, secret)
+	return jwt.ExtractIDFromToken(requestToken, secret)
 }
