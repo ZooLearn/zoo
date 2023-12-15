@@ -1,4 +1,4 @@
-package tokenutil
+package jwt
 
 import (
 	"fmt"
