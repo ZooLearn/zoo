@@ -15,3 +15,7 @@ test:
 .PHONY: gen-domain-test
 gen-domain-test:
 	mockery --dir=domain --output=domain/mocks --outpkg=mocks --all
+
+.PHONY: golangci-lint
+golangci-lint:
+	golangci-lint run

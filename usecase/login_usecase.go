@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/ZooLearn/zoo/domain"
-	"github.com/ZooLearn/zoo/internal/jwt"
+	"github.com/ZooLearn/zoo/internal/jwtx"
 )
 
 type loginUsecase struct {
@@ -27,9 +27,9 @@ func (lu *loginUsecase) GetUserByEmail(c context.Context, email string) (domain.
 }
 
 func (lu *loginUsecase) CreateAccessToken(user *domain.User, secret string, expiry int) (accessToken string, err error) {
-	return jwt.CreateAccessToken(user, secret, expiry)
+	return jwtx.CreateAccessToken(user, secret, expiry)
 }
 
 func (lu *loginUsecase) CreateRefreshToken(user *domain.User, secret string, expiry int) (refreshToken string, err error) {
-	return jwt.CreateRefreshToken(user, secret, expiry)
+	return jwtx.CreateRefreshToken(user, secret, expiry)
 }
