@@ -7,7 +7,7 @@ import (
 	"os"
 
 	entsql "entgo.io/ent/dialect/sql"
-	"github.com/ZooLearn/zoo/pkg/log"
+	"github.com/ZooLearn/zoo/internal/log"
 	_ "github.com/lib/pq"
 	"gopkg.in/yaml.v2"
 )

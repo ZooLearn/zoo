@@ -7,7 +7,7 @@ import (
 	"entgo.io/ent/dialect/sql/schema"
 	"github.com/ZooLearn/zoo/config"
 	"github.com/ZooLearn/zoo/ent"
-	"github.com/ZooLearn/zoo/pkg/log"
+	"github.com/ZooLearn/zoo/internal/log"
 )
 
 func main() {

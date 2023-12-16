@@ -3,7 +3,7 @@ package bootstrap
 import (
 	"github.com/ZooLearn/zoo/config"
 	"github.com/ZooLearn/zoo/ent"
-	"github.com/ZooLearn/zoo/pkg/log"
+	"github.com/ZooLearn/zoo/internal/log"
 )
 
 type Application struct {
