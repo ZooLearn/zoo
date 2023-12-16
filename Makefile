@@ -19,3 +19,10 @@ gen-domain-test:
 .PHONY: golangci-lint
 golangci-lint:
 	golangci-lint run
+
+.PHONY: go-vet
+go-vet:
+	go vet ./...
+
+.PHONY: pre-commit
+pre-commit: golangci-lint go-vet test
