@@ -62,7 +62,7 @@ func (tr *tagRepository) Fetch(c context.Context, r domain.FetchTagRequest) ([]d
 	predicate := []predicate.Tag{}
 	predicate = append(predicate, tag.DeleteAtIsNil())
 	if r.Key != nil {
-		predicate = append(predicate, tag.KeyEQ(*r.Key))
+		predicate = append(predicate, tag.KeyContains(*r.Key))
 	}
 	tags, err := tr.database.Tag.Query().Where(predicate...).Page(tr.ctx, r.Page, r.PageSize, func(tp *ent.TagPager) {
 		tp.Order = ent.Desc(tag.FieldCreatedAt)

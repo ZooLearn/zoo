@@ -117,6 +117,7 @@ func (tc *TagController) FetchAll(c *gin.Context) {
 			Msg:  "success",
 			Code: http.StatusOK,
 		},
+		Data: []domain.TagInfo{},
 	}
 	for _, v := range result {
 		respose.Data = append(respose.Data, domain.TagInfo{
@@ -158,6 +159,7 @@ func (tc *TagController) Fetch(c *gin.Context) {
 			PageSize: paginationInfo.PageSize,
 			Total:    paginationInfo.Total,
 		},
+		Data: []domain.TagInfo{},
 	}
 
 	for _, v := range result {
