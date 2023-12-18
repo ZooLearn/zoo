@@ -78,7 +78,6 @@ type GetByIDResponse struct {
 	Response
 	Data TagInfo `json:"data"`
 }
-
 type TagUsecase interface {
 	Create(c context.Context, tag Tag) error
 	Update(c context.Context, tag Tag) error
