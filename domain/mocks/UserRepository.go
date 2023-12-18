@@ -28,32 +28,6 @@ func (_m *UserRepository) Create(c context.Context, user *domain.User) error {
 	return r0
 }
 
-// Fetch provides a mock function with given fields: c
-func (_m *UserRepository) Fetch(c context.Context) ([]domain.User, error) {
-	ret := _m.Called(c)
-
-	var r0 []domain.User
-	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context) ([]domain.User, error)); ok {
-		return rf(c)
-	}
-	if rf, ok := ret.Get(0).(func(context.Context) []domain.User); ok {
-		r0 = rf(c)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]domain.User)
-		}
-	}
-
-	if rf, ok := ret.Get(1).(func(context.Context) error); ok {
-		r1 = rf(c)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
 // GetByEmail provides a mock function with given fields: c, email
 func (_m *UserRepository) GetByEmail(c context.Context, email string) (domain.User, error) {
 	ret := _m.Called(c, email)

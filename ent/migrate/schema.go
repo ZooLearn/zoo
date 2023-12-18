@@ -8,6 +8,23 @@ import (
 )
 
 var (
+	// TagsColumns holds the columns for the "tags" table.
+	TagsColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_at", Type: field.TypeTime, Comment: "Create Time"},
+		{Name: "updated_at", Type: field.TypeTime, Comment: "Update Time"},
+		{Name: "delete_at", Type: field.TypeTime, Nullable: true},
+		{Name: "key", Type: field.TypeString, Size: 100},
+		{Name: "alias", Type: field.TypeString, Size: 100},
+		{Name: "color", Type: field.TypeString, Size: 10},
+		{Name: "image_url", Type: field.TypeString},
+	}
+	// TagsTable holds the schema information for the "tags" table.
+	TagsTable = &schema.Table{
+		Name:       "tags",
+		Columns:    TagsColumns,
+		PrimaryKey: []*schema.Column{TagsColumns[0]},
+	}
 	// UsersColumns holds the columns for the "users" table.
 	UsersColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUUID},
@@ -26,6 +43,7 @@ var (
 	}
 	// Tables holds all the tables in the schema.
 	Tables = []*schema.Table{
+		TagsTable,
 		UsersTable,
 	}
 )

@@ -11,14 +11,13 @@ import (
 
 func Setup(env config.EnvConf, timeout time.Duration, db *ent.Client, gin *gin.Engine) {
 	publicRouter := gin.Group("")
+	protectedRouter := gin.Group("")
+	protectedRouter.Use(middleware.JwtAuthMiddleware(env.AccessTokenSecret))
 	// All Public APIs
 	NewSignupRouter(env, timeout, db, publicRouter)
 	NewLoginRouter(env, timeout, db, publicRouter)
 	NewRefreshTokenRouter(env, timeout, db, publicRouter)
-
-	protectedRouter := gin.Group("")
 	// Middleware to verify AccessToken
-	protectedRouter.Use(middleware.JwtAuthMiddleware(env.AccessTokenSecret))
-	// All Private APIs
+	NewTagRouter(env, timeout, db, publicRouter, protectedRouter)
 	NewProfileRouter(env, timeout, db, protectedRouter)
 }
