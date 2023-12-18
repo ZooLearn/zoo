@@ -13,7 +13,7 @@ type Application struct {
 
 func App() Application {
 	app := &Application{}
-	cfgs, err := config.NewConfig("./config.yaml")
+	cfgs, err := config.NewConfig("../config.yaml")
 	if err != nil {
 		log.Panicf("config.NewConfig error: %v", err)
 	}

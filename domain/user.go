@@ -4,10 +4,6 @@ import (
 	"context"
 )
 
-const (
-	CollectionUser = "users"
-)
-
 type User struct {
 	ID       string
 	Name     string

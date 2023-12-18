@@ -10,16 +10,14 @@ import (
 )
 
 type userRepository struct {
-	ctx        context.Context
-	database   *ent.Client
-	collection string
+	ctx      context.Context
+	database *ent.Client
 }
 
-func NewUserRepository(db *ent.Client, collection string) domain.UserRepository {
+func NewUserRepository(db *ent.Client) domain.UserRepository {
 	return &userRepository{
-		ctx:        context.Background(),
-		database:   db,
-		collection: collection,
+		ctx:      context.Background(),
+		database: db,
 	}
 }
 
