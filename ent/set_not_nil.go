@@ -5,6 +5,222 @@ package ent
 import "time"
 
 // set field if value's pointer is not nil.
+func (f *FileUpdate) SetNotNilUpdatedAt(value *time.Time) *FileUpdate {
+	if value != nil {
+		return f.SetUpdatedAt(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdateOne) SetNotNilUpdatedAt(value *time.Time) *FileUpdateOne {
+	if value != nil {
+		return f.SetUpdatedAt(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileCreate) SetNotNilUpdatedAt(value *time.Time) *FileCreate {
+	if value != nil {
+		return f.SetUpdatedAt(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdate) SetNotNilDeleteAt(value *time.Time) *FileUpdate {
+	if value != nil {
+		return f.SetDeleteAt(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdateOne) SetNotNilDeleteAt(value *time.Time) *FileUpdateOne {
+	if value != nil {
+		return f.SetDeleteAt(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileCreate) SetNotNilDeleteAt(value *time.Time) *FileCreate {
+	if value != nil {
+		return f.SetDeleteAt(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdate) SetNotNilCode(value *string) *FileUpdate {
+	if value != nil {
+		return f.SetCode(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdateOne) SetNotNilCode(value *string) *FileUpdateOne {
+	if value != nil {
+		return f.SetCode(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileCreate) SetNotNilCode(value *string) *FileCreate {
+	if value != nil {
+		return f.SetCode(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdate) SetNotNilName(value *string) *FileUpdate {
+	if value != nil {
+		return f.SetName(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdateOne) SetNotNilName(value *string) *FileUpdateOne {
+	if value != nil {
+		return f.SetName(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileCreate) SetNotNilName(value *string) *FileCreate {
+	if value != nil {
+		return f.SetName(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdate) SetNotNilFileType(value *uint8) *FileUpdate {
+	if value != nil {
+		return f.SetFileType(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdateOne) SetNotNilFileType(value *uint8) *FileUpdateOne {
+	if value != nil {
+		return f.SetFileType(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileCreate) SetNotNilFileType(value *uint8) *FileCreate {
+	if value != nil {
+		return f.SetFileType(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdate) SetNotNilSize(value *uint64) *FileUpdate {
+	if value != nil {
+		return f.SetSize(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdateOne) SetNotNilSize(value *uint64) *FileUpdateOne {
+	if value != nil {
+		return f.SetSize(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileCreate) SetNotNilSize(value *uint64) *FileCreate {
+	if value != nil {
+		return f.SetSize(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdate) SetNotNilPath(value *string) *FileUpdate {
+	if value != nil {
+		return f.SetPath(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdateOne) SetNotNilPath(value *string) *FileUpdateOne {
+	if value != nil {
+		return f.SetPath(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileCreate) SetNotNilPath(value *string) *FileCreate {
+	if value != nil {
+		return f.SetPath(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdate) SetNotNilTempPath(value *string) *FileUpdate {
+	if value != nil {
+		return f.SetTempPath(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdateOne) SetNotNilTempPath(value *string) *FileUpdateOne {
+	if value != nil {
+		return f.SetTempPath(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileCreate) SetNotNilTempPath(value *string) *FileCreate {
+	if value != nil {
+		return f.SetTempPath(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdate) SetNotNilUserID(value *string) *FileUpdate {
+	if value != nil {
+		return f.SetUserID(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileUpdateOne) SetNotNilUserID(value *string) *FileUpdateOne {
+	if value != nil {
+		return f.SetUserID(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
+func (f *FileCreate) SetNotNilUserID(value *string) *FileCreate {
+	if value != nil {
+		return f.SetUserID(*value)
+	}
+	return f
+}
+
+// set field if value's pointer is not nil.
 func (t *TagUpdate) SetNotNilUpdatedAt(value *time.Time) *TagUpdate {
 	if value != nil {
 		return t.SetUpdatedAt(*value)

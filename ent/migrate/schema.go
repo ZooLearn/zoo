@@ -8,6 +8,38 @@ import (
 )
 
 var (
+	// FilesColumns holds the columns for the "files" table.
+	FilesColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeUUID},
+		{Name: "created_at", Type: field.TypeTime, Comment: "Create Time"},
+		{Name: "updated_at", Type: field.TypeTime, Comment: "Update Time"},
+		{Name: "delete_at", Type: field.TypeTime, Nullable: true},
+		{Name: "code", Type: field.TypeString},
+		{Name: "name", Type: field.TypeString},
+		{Name: "file_type", Type: field.TypeUint8},
+		{Name: "size", Type: field.TypeUint64},
+		{Name: "path", Type: field.TypeString, Nullable: true},
+		{Name: "temp_path", Type: field.TypeString},
+		{Name: "user_id", Type: field.TypeString},
+	}
+	// FilesTable holds the schema information for the "files" table.
+	FilesTable = &schema.Table{
+		Name:       "files",
+		Columns:    FilesColumns,
+		PrimaryKey: []*schema.Column{FilesColumns[0]},
+		Indexes: []*schema.Index{
+			{
+				Name:    "file_user_id",
+				Unique:  false,
+				Columns: []*schema.Column{FilesColumns[10]},
+			},
+			{
+				Name:    "file_file_type",
+				Unique:  false,
+				Columns: []*schema.Column{FilesColumns[6]},
+			},
+		},
+	}
 	// TagsColumns holds the columns for the "tags" table.
 	TagsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
@@ -43,6 +75,7 @@ var (
 	}
 	// Tables holds all the tables in the schema.
 	Tables = []*schema.Table{
+		FilesTable,
 		TagsTable,
 		UsersTable,
 	}

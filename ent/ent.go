@@ -12,6 +12,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
+	"github.com/ZooLearn/zoo/ent/file"
 	"github.com/ZooLearn/zoo/ent/tag"
 	"github.com/ZooLearn/zoo/ent/user"
 )
@@ -74,6 +75,7 @@ var (
 func checkColumn(table, column string) error {
 	initCheck.Do(func() {
 		columnCheck = sql.NewColumnCheck(map[string]func(string) bool{
+			file.Table: file.ValidColumn,
 			tag.Table:  tag.ValidColumn,
 			user.Table: user.ValidColumn,
 		})

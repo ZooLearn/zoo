@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/ZooLearn/zoo/ent/file"
 	"github.com/ZooLearn/zoo/ent/tag"
 	"github.com/ZooLearn/zoo/ent/user"
 )
@@ -55,6 +56,85 @@ func (o OrderDirection) reverse() OrderDirection {
 }
 
 const errInvalidPagination = "INVALID_PAGINATION"
+
+type FilePager struct {
+	Order  file.OrderOption
+	Filter func(*FileQuery) (*FileQuery, error)
+}
+
+// FilePaginateOption enables pagination customization.
+type FilePaginateOption func(*FilePager)
+
+// DefaultFileOrder is the default ordering of File.
+var DefaultFileOrder = Desc(file.FieldID)
+
+func newFilePager(opts []FilePaginateOption) (*FilePager, error) {
+	pager := &FilePager{}
+	for _, opt := range opts {
+		opt(pager)
+	}
+	if pager.Order == nil {
+		pager.Order = DefaultFileOrder
+	}
+	return pager, nil
+}
+
+func (p *FilePager) ApplyFilter(query *FileQuery) (*FileQuery, error) {
+	if p.Filter != nil {
+		return p.Filter(query)
+	}
+	return query, nil
+}
+
+// FilePageList is File PageList result.
+type FilePageList struct {
+	List        []*File      `json:"list"`
+	PageDetails *PageDetails `json:"pageDetails"`
+}
+
+func (f *FileQuery) Page(
+	ctx context.Context, pageNum uint64, pageSize uint64, opts ...FilePaginateOption,
+) (*FilePageList, error) {
+
+	pager, err := newFilePager(opts)
+	if err != nil {
+		return nil, err
+	}
+
+	if f, err = pager.ApplyFilter(f); err != nil {
+		return nil, err
+	}
+
+	ret := &FilePageList{}
+
+	ret.PageDetails = &PageDetails{
+		Page: pageNum,
+		Size: pageSize,
+	}
+
+	count, err := f.Clone().Count(ctx)
+
+	if err != nil {
+		return nil, err
+	}
+
+	ret.PageDetails.Total = uint64(count)
+
+	if pager.Order != nil {
+		f = f.Order(pager.Order)
+	} else {
+		f = f.Order(DefaultFileOrder)
+	}
+
+	f = f.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
+	list, err := f.All(ctx)
+	if err != nil {
+		return nil, err
+	}
+	ret.List = list
+
+	return ret, nil
+}
 
 type TagPager struct {
 	Order  tag.OrderOption
